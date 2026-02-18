@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { FaChartLine, FaCloud, FaShieldAlt } from 'react-icons/fa';
-// import { Link } from 'react-router-dom'; // Uncomment if using React Router
 import { motion, AnimatePresence } from 'framer-motion';
-
-// 1. Data remains exactly the same
 const featureData = [
   {
     id: 0,
@@ -34,77 +31,37 @@ const HoverFeatures = () => {
   return (
     <section className="py-16 bg-white font-sans">
       <div className="max-w-6xl mx-auto px-6">
-
-        {/* Section Header */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 leading-snug">
             Explore ad solutions used <br />
             by <span className="text-teal-500">100 000+ customers</span>
           </h2>
         </div>
-
-        {/* Layout */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-          {/* LEFT SIDE */}
           <div className="space-y-8 relative">
             {featureData.map((item, index) => (
-              <div
-                key={item.id}
-                onMouseEnter={() => setActiveIndex(index)}
-                className="relative pl-6 cursor-pointer group"
-              >
-                {/* ANIMATION CHANGE 1: The Gliding Green Line 
-                   'layoutId' makes the line physically slide from one item to the next
-                */}
+              <div key={item.id} onMouseEnter={() => setActiveIndex(index)} className="relative pl-6 cursor-pointer group" >
                 {activeIndex === index && (
-                  <motion.div
-                    layoutId="activeLine"
-                    className="absolute left-0 top-0 h-full w-[3px] bg-teal-500 rounded-full"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
+                  <motion.div layoutId="activeLine" className="absolute left-0 top-0 h-full w-[3px] bg-teal-500 rounded-full"transition={{ type: "spring", stiffness: 300, damping: 30 }}/>
                 )}
-
-                <h3 className={`text-lg font-semibold transition-colors duration-300 
-                  ${activeIndex === index ? "text-gray-900" : "text-gray-400 group-hover:text-gray-600"}`}>
+                <h3 className={`text-lg font-semibold transition-colors duration-300 ${activeIndex === index ? "text-gray-900" : "text-gray-400 group-hover:text-gray-600"}`}>
                   {item.title}
                 </h3>
-
-                <p className={`mt-2 text-sm leading-relaxed transition-all duration-300
-                  ${activeIndex === index ? "text-gray-600 opacity-100" : "text-gray-400 opacity-70"}`}>
+                <p className={`mt-2 text-sm leading-relaxed transition-all duration-300 ${activeIndex === index ? "text-gray-600 opacity-100" : "text-gray-400 opacity-70"}`}>
                   {item.description}
                 </p>
-
-                {/* ANIMATION CHANGE 2: Smooth Reveal for "Learn more" */}
-                <div
-                  className={`mt-2 text-sm font-medium text-teal-500 overflow-hidden transition-all duration-300 transform
-                  ${activeIndex === index ? "opacity-100 translate-x-0 h-6" : "opacity-0 -translate-x-2 h-0"}`}
-                >
+                <div className={`mt-2 text-sm font-medium text-teal-500 overflow-hidden transition-all duration-300 transform ${activeIndex === index ? "opacity-100 translate-x-0 h-6" : "opacity-0 -translate-x-2 h-0"}`} >
                   Learn more
                 </div>
               </div>
             ))}
           </div>
-
-          {/* RIGHT SIDE */}
           <div className="relative w-full h-[320px] rounded-2xl bg-gray-100 overflow-hidden shadow-lg">
             <AnimatePresence mode='wait'>
               {featureData.map((item, index) => (
                 activeIndex === index && (
-                  <motion.div
-                    key={item.id}
-                    className="absolute inset-0"
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
-                    {/* Optional: Dark overlay for better text contrast if you overlay text later */}
+                  <motion.div key={item.id}className="absolute inset-0" initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4, ease: "easeInOut" }} >
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover"/>
                     <div className="absolute inset-0 bg-black/10"></div> 
                   </motion.div>
                 )
