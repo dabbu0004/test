@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ThemeToggle from '../components/ThemeToggle';
 
 
 const Navbar = () => {
@@ -18,12 +19,14 @@ const Navbar = () => {
       </div>
 
       <div className="flex gap-4 items-center">
+        <ThemeToggle/>
         <button className="text-sm font-medium hover:text-blue-600">
           Log in
         </button>
         <button className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium transition">
           Sign Up
         </button>
+        
       </div>
     </nav>
   );
