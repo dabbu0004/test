@@ -1,16 +1,22 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
-const Lead = require('./models/User'); 
+import 'dotenv/config';
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+ import connectDB from './config.js';
+import Lead from './models/User.js';
+
+
+
+ 
+dotenv.config(); 
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch(err => console.log("❌ MongoDB Error:", err));
+
+connectDB();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 //Traning bot
 const systemInstruction = `
@@ -29,7 +35,7 @@ app.post('/api/register', async (req, res) => {
   try {
     const newLead = new Lead(req.body);
     await newLead.save();
-    console.log("📝 New Lead Saved:", req.body.name);
+    console.log(" New Lead Saved:", req.body.name);
     res.status(201).json({ message: "User registered successfully!" });
   } catch (error) {
     console.error("Save Error:", error);
@@ -49,7 +55,7 @@ app.post('/api/chat', async (req, res) => {
     const text = response.text();
     res.json({ reply: text });
   } catch (error) {
-    console.error("❌ AI Error Details:", error);
+    console.error(" AI Error Details:", error);
     res.status(500).json({ 
       reply: "I am currently undergoing maintenance. Please try again in a moment." 
     });
@@ -57,4 +63,4 @@ app.post('/api/chat', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(` Server running on port ${PORT}`));

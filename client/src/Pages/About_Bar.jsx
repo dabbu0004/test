@@ -30,14 +30,14 @@ const tabData = [
 ];
 
 const About = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(0); 
   const radius = 60;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (tabData[activeTab].percent / 100) * circumference;
   return (
     <div className="bg-gray-50 min-h-screen font-sans">
       <div className="py-20 px-4 flex justify-center">
-        <div className="relative max-w-6xl w-full h-[450px] flex">
+        <div className="relative max-w-7xl w-full h-[450px] flex">
           <div className="absolute inset-0 bg-black rounded-[3rem] shadow-2xl w-full z-0"></div>
           <div className="w-[30%] lg:w-[35%] py-12 pl-8 pr-4 relative z-20 flex flex-col justify-center">
             <div className="relative">
