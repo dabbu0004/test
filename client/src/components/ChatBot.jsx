@@ -130,8 +130,6 @@ const ChatBot = () => {
           )}
         </div>
       )}
-
-      {/* FLOATING ACTION BUTTON */}
       <button onClick={() => setIsOpen(!isOpen)}className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all hover:scale-105 active:scale-95 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 z-50"  >
         {isOpen ? <FaTimes size={24} /> : <FaCommentDots size={26} />}
       </button>
